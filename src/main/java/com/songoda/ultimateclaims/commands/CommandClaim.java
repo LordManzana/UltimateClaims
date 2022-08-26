@@ -86,7 +86,8 @@ public class CommandClaim extends AbstractCommand {
 
             boolean newRegion = claim.isNewRegion(chunk);
 
-            if (newRegion && claim.getClaimedRegions().size() >= Settings.MAX_REGIONS.getInt()) {
+            int maxRegions = claim.getMaxClaimRegions(player);
+            if (newRegion && claim.getClaimedRegions().size() >= maxRegions) {
                 plugin.getLocale().getMessage("command.claim.maxregions").sendPrefixedMessage(sender);
                 return ReturnType.FAILURE;
             }

@@ -336,6 +336,10 @@ public class Claim {
         return PlayerUtils.getNumberFromPermission(player, "ultimateclaims.maxclaims", Settings.MAX_CHUNKS.getInt());
     }
 
+    public int getMaxClaimRegions(Player player) {
+        return PlayerUtils.getNumberFromPermission(player, "ultimateclaims.maxregions", Settings.MAX_REGIONS.getInt());
+    }
+
     public void animateChunk(Chunk chunk, Player player, Material material) {
         if (!Settings.ENABLE_CHUNK_ANIMATION.getBoolean())
             return;

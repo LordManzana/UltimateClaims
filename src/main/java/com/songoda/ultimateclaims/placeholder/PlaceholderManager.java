@@ -34,6 +34,10 @@ public class PlaceholderManager extends PlaceholderExpansion {
                 if (!player.isOnline()) return "0/0";
                 return claims.size() == 0 ? "0/0" : claims.stream().mapToInt(Claim::getClaimSize).sum() + "/" + claims.stream().mapToInt(c -> c.getMaxClaimSize(player.getPlayer())).sum();
             }
+            case "totalRegions": {
+                if (!player.isOnline()) return "0/0";
+                return claims.size() == 0 ? "0/0" : claims.stream().findFirst().get().getClaimedRegions().size() + "/" + claims.stream().findFirst().get().getMaxClaimRegions(player.getPlayer());
+            }
             case "owner":
                 return claims.size() == 0 ? plugin.getLocale().getMessage("general.word.none").getMessage() : claims.stream().map(c -> c.getOwner().getName()).collect(Collectors.joining(", "));
             case "members": {

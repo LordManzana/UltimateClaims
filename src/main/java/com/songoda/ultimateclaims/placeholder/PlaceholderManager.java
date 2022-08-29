@@ -32,9 +32,9 @@ public class PlaceholderManager extends PlaceholderExpansion {
                 return claims.size() == 0 ? "0" : claims.stream().map(Claim::getPowercellTimeRemaining).collect(Collectors.joining(", "));
             case "totalchunks": {
                 if (!player.isOnline()) return "0/0";
-                return claims.size() == 0 ? "0/0" : claims.stream().mapToInt(Claim::getClaimSize).sum() + "/" + claims.stream().mapToInt(c -> c.getMaxClaimSize(player.getPlayer())).sum();
+                return claims.size() == 0 ? "0/0" : claims.stream().findFirst().get().getClaimedChunks().size() + "/" + claims.stream().findFirst().get().getMaxClaimSize(player.getPlayer());
             }
-            case "totalRegions": {
+            case "totalregions": {
                 if (!player.isOnline()) return "0/0";
                 return claims.size() == 0 ? "0/0" : claims.stream().findFirst().get().getClaimedRegions().size() + "/" + claims.stream().findFirst().get().getMaxClaimRegions(player.getPlayer());
             }
